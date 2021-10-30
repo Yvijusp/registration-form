@@ -5,12 +5,20 @@ import SubmitInput from './FormElements/SubmitInput';
 import TextInputs from './FormElements/TextInputs';
 
 const Form = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState(undefined);
+  const [email, setEmail] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (name === undefined) setName('');
+    if (email === undefined) setEmail('');
+    if (password === undefined) setPassword('');
+  };
 
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={submitHandler}>
       <Validation
         render={(validate) => {
           const validation = validate(name);
@@ -28,7 +36,7 @@ const Form = () => {
       />
       <Validation
         render={(validate) => {
-          const validation = validate(name);
+          const validation = validate(email);
           return (
             <TextInputs
               label='email'
@@ -43,7 +51,7 @@ const Form = () => {
       />
       <Validation
         render={(validate) => {
-          const validation = validate(name);
+          const validation = validate(password);
           return (
             <TextInputs
               label='password'

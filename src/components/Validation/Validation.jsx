@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 const Validation = ({ render }) => {
   const validate = (input) => {
+    if (input === undefined) return null;
     if (!input) return 'cannot be blank';
   };
 
