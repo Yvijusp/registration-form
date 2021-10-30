@@ -4,7 +4,7 @@ import { ErrorMessage, TextInputWrapper } from './TextInputs.styled';
 import { BsPerson, BsEnvelope } from 'react-icons/bs';
 import { BiLock } from 'react-icons/bi';
 
-const TextInputs = (props) => {
+const TextInputs = React.forwardRef((props, ref) => {
   const { label, type, name, placeholder, validation } = props;
   switch (label) {
     case 'name':
@@ -20,6 +20,7 @@ const TextInputs = (props) => {
               name={name}
               id={label}
               placeholder={placeholder}
+              ref={ref}
             />
             {validation && (
               <ErrorMessage>
@@ -42,6 +43,7 @@ const TextInputs = (props) => {
               name={name}
               id={label}
               placeholder={placeholder}
+              ref={ref}
             />
             {validation && (
               <ErrorMessage>
@@ -64,6 +66,7 @@ const TextInputs = (props) => {
               name={name}
               id={label}
               placeholder={placeholder}
+              ref={ref}
             />
             {validation && (
               <ErrorMessage>
@@ -83,6 +86,7 @@ const TextInputs = (props) => {
               name={name}
               id={label}
               placeholder={placeholder}
+              ref={ref}
             />
             {validation && (
               <ErrorMessage>
@@ -93,7 +97,7 @@ const TextInputs = (props) => {
         </>
       );
   }
-};
+});
 
 TextInputs.propTypes = {
   label: PropTypes.oneOfType([

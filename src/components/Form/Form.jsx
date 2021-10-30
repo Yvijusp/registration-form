@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Validation from '../Validation/Validation';
 import { FormWrapper } from './Form.styled';
 import SubmitInput from './FormElements/SubmitInput';
@@ -9,12 +9,52 @@ const Form = () => {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
 
+  const nameRef = useRef();
+  const passwordRef = useRef();
+  const emailRef = useRef();
+
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (name === undefined) setName('');
-    if (email === undefined) setEmail('');
-    if (password === undefined) setPassword('');
+    if (name === undefined) {
+      setName('');
+      nameRef.current.classList.add('error');
+    }
+    if (email === undefined) {
+      setEmail('');
+      emailRef.current.classList.add('error');
+    }
+    if (password === undefined) {
+      setPassword('');
+      passwordRef.current.classList.add('error');
+    }
+    if (!name) {
+      nameRef.current.classList.add('error');
+      nameRef.current.classList.remove('success');
+    }
+    if (!email) {
+      emailRef.current.classList.add('error');
+      emailRef.current.classList.remove('success');
+    }
+    if (!password) {
+      passwordRef.current.classList.add('error');
+      passwordRef.current.classList.remove('success');
+    }
+
+    if (name) {
+      nameRef.current.classList.add('success');
+      nameRef.current.classList.remove('error');
+    }
+
+    if (email) {
+      emailRef.current.classList.add('success');
+      emailRef.current.classList.remove('error');
+    }
+
+    if (password) {
+      passwordRef.current.classList.add('success');
+      passwordRef.current.classList.remove('error');
+    }
   };
 
   return (
@@ -30,6 +70,7 @@ const Form = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               validation={validation}
+              ref={nameRef}
             />
           );
         }}
@@ -45,6 +86,7 @@ const Form = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               validation={validation}
+              ref={emailRef}
             />
           );
         }}
@@ -60,6 +102,7 @@ const Form = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               validation={validation}
+              ref={passwordRef}
             />
           );
         }}

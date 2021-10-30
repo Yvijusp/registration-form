@@ -14,13 +14,13 @@ export const TextInputWrapper = styled.div`
     outline: none;
     border: none;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.6);
+  }
+  .error {
+    box-shadow: 0 0 4px 1px #ff3333;
+  }
 
-    :focus,
-    :active,
-    :hover {
-      box-shadow: 0 0 3px 1px
-        ${({ validation }) => (validation ? '#4BB543e6' : '#ff3333')};
-    }
+  .success {
+    box-shadow: 0 0 4px 1px #4bb543;
   }
 
   svg {
