@@ -14,13 +14,22 @@ export const TextInputWrapper = styled.div`
     outline: none;
     border: none;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.6);
+
+    :focus,
+    :active {
+      box-shadow: 0 0 3px 1px
+        ${({ validation }) => (validation ? '#4bb543' : '#ff3333')};
+    }
   }
+
   .error {
-    box-shadow: 0 0 4px 1px #ff3333;
+    box-shadow: 0 0 4px 1px
+      ${({ validation }) => (!validation ? '#ff3333' : '#4bb543')};
   }
 
   .success {
-    box-shadow: 0 0 4px 1px #4bb543;
+    box-shadow: 0 0 4px 1px
+      ${({ validation }) => (validation ? '#4bb543' : '#ff3333')};
   }
 
   svg {
